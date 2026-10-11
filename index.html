@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101114">
+  <meta name="description" content="اكتشف أحدث الملابس الرجالي الكاجوال والشبابية مع رِواق. اختيارات عصرية تناسب أسلوبك.">
+  <title>رِواق | اختار ستايلك</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #101114;
+      --panel: #191b20;
+      --white: #ffffff;
+      --muted: #a6a8b1;
+      --blue: #1687ff;
+      --line: rgba(255,255,255,.1);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: "Cairo", sans-serif;
+      line-height: 1.8;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(1160px, 91%); margin: auto; }
+    .muted { color: var(--muted); }
+    .section { padding: 76px 0; }
+    .section-head { margin-bottom: 28px; }
+    .section-head h2 { font-size: clamp(25px,4vw,38px); margin: 0 0 6px; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .eyebrow { color: #72baff; font-size: 13px; font-weight: 800; }
+
+    .announcement {
+      text-align: center;
+      padding: 8px 12px;
+      background: #0863d4;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(16,17,20,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand { font-size: 27px; font-weight: 900; letter-spacing: -.8px; }
+    .brand span { color: var(--blue); }
+    .brand small { display: block; font-size: 10px; color: var(--muted); letter-spacing: 3px; line-height: 1; }
+    .nav-links { display: flex; gap: 25px; font-size: 13px; color: #dedee4; }
+    .nav-links a:hover, footer a:hover { color: #67b4ff; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .icon-btn {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+    }
+    .icon-btn:hover { border-color: var(--blue); }
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      background: var(--blue);
+      border-radius: 50%;
+      min-width: 18px;
+      height: 18px;
+      font-size: 10px;
+      display: grid;
+      place-items: center;
+    }
+    .menu-toggle { display: none; }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+    .btn-primary {
+      color: white;
+      background: var(--blue);
+      box-shadow: 0 7px 26px rgba(22,135,255,.19);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 34px rgba(22,135,255,.4);
+    }
+    .btn-outline { border-color: #51535b; background: transparent; color: white; }
+    .btn-outline:hover { border-color: var(--blue); background: rgba(22,135,255,.1); }
+
+    .hero { padding: 65px 0 74px; overflow: hidden; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+    .hero-copy h1 {
+      font-size: clamp(37px,5.2vw,65px);
+      line-height: 1.38;
+      letter-spacing: -1.8px;
+      margin: 15px 0;
+    }
+    .hero-copy h1 span { color: #5bb0ff; }
+    .hero-copy > p { color: #b8bac4; max-width: 490px; font-size: 15px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 25px 0 30px; }
+    .trust { display: flex; gap: 20px; flex-wrap: wrap; color: #d4d5db; font-size: 11px; }
+    .trust span::before { content: "✓"; color: #63b6ff; margin-left: 6px; font-weight: 900; }
+    .hero-art { position: relative; min-height: 440px; }
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      background: #0863d4;
+      opacity: .2;
+      filter: blur(85px);
+      border-radius: 50%;
+      top: 60px;
+      right: 70px;
+    }
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 25px;
+      opacity: .9;
+      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    }
+    .hero-label {
+      position: absolute;
+      z-index: 2;
+      background: rgba(25,27,32,.85);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+      border-radius: 13px;
+      padding: 12px 17px;
+      box-shadow: 0 12px 30px #0004;
+    }
+    .hero-label strong { display: block; font-size: 13px; }
+    .hero-label small { color: var(--muted); font-size: 10px; }
+    .label-one { top: 60px; right: 0; }
+    .label-two { bottom: 90px; left: 0; }
+
+    .category-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .category {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--panel);
+    }
+    .category img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .category:hover img { transform: scale(1.06); }
+    .category::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 30%, rgba(0,0,0,.86));
+    }
+    .category-info { position: absolute; z-index: 1; bottom: 18px; right: 20px; left: 20px; }
+    .category-info h3 { margin: 0; font-size: 23px; }
+    .category-info p { margin: 0; color: #ddd; font-size: 12px; }
+
+    .products-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+    .product-card {
+      min-width: 0;
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition: transform .25s, border-color .25s;
+    }
+    .product-card:hover { transform: translateY(-5px); border-color: #3b78bd; }
+    .product-image-wrap { position: relative; overflow: hidden; background: #24262b; }
+    .product-image { width: 100%; aspect-ratio: 4/4.5; object-fit: cover; transition: transform .4s; }
+    .product-card:hover .product-image { transform: scale(1.04); }
+    .tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border-radius: 6px;
+      background: var(--blue);
+      color: white;
+      padding: 4px 9px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .product-info { padding: 14px; }
+    .product-info h3 { font-size: 14px; margin: 0 0 4px; }
+    .product-desc { color: var(--muted); font-size: 11px; margin: 0 0 8px; }
+    .rating { font-size: 11px; color: #ffc85b; }
+    .price-row { display: flex; align-items: center; gap: 9px; margin: 8px 0 13px; flex-wrap: wrap; }
+    .price { font-size: 17px; font-weight: 900; }
+    .old-price { color: #898b95; text-decoration: line-through; font-size: 11px; }
+    .product-info .btn { width: 100%; padding: 9px 8px; font-size: 12px; }
+
+    .promo {
+      border: 1px solid #254c7b;
+      border-radius: 24px;
+      background: radial-gradient(ellipse at 90% 20%, #153b66, transparent 50%), #171b23;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+    .promo h2 { margin: 5px 0 10px; font-size: clamp(25px,4vw,38px); }
+    .promo p { color: #c0c5d0; margin: 0 0 20px; font-size: 13px; }
+    .promo-note { color: #9ecbff; font-size: 11px; margin-top: 10px; }
+
+    .benefit-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; }
+    .benefit {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 22px 18px;
+    }
+    .benefit-icon {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      background: #102b49;
+      color: #70baff;
+      border-radius: 13px;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .benefit h3 { font-size: 14px; margin: 0 0 6px; }
+    .benefit p { font-size: 11px; color: var(--muted); margin: 0; }
+
+    .newsletter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: #191b20;
+      padding: 30px;
+    }
+    .newsletter h2 { font-size: 25px; margin: 0 0 5px; }
+    .newsletter p { color: var(--muted); font-size: 12px; margin: 0; }
+    .newsletter-form { display: flex; gap: 8px; width: min(430px,100%); }
+    input {
+      min-width: 0;
+      background: #101114;
+      border: 1px solid #363942;
+      color: white;
+      padding: 12px 14px;
+      border-radius: 9px;
+      outline: none;
+    }
+    input:focus { border-color: var(--blue); }
+    .newsletter-form input { flex: 1; width: 50px; }
+
+    .faq-list { max-width: 800px; }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 19px 0;
+      background: none;
+      border: 0;
+      color: white;
+      text-align: right;
+      font-weight: 700;
+    }
+    .faq-question span:last-child { color: #73baff; font-size: 22px; }
+    .faq-answer { display: none; padding: 0 0 18px; color: var(--muted); font-size: 13px; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .faq-question span:last-child { transform: rotate(45deg); }
+
+    footer { border-top: 1px solid var(--line); background: #0b0c0f; padding: 45px 0 20px; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 35px; }
+    .footer-grid p { color: var(--muted); font-size: 12px; max-width: 330px; }
+    .footer-grid h3 { font-size: 14px; }
+    .footer-links { display: grid; gap: 8px; color: #c5c6ce; font-size: 12px; }
+    .copyright { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 18px; text-align: center; color: #777b86; font-size: 11px; }
+
+    .toast {
+      position: fixed;
+      z-index: 50;
+      bottom: 20px;
+      right: 50%;
+      transform: translate(50%, 20px);
+      background: #f2f6ff;
+      color: #12151b;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s;
+      width: max-content;
+      max-width: 90%;
+    }
+    .toast.show { opacity: 1; transform: translate(50%,0); }
+
+    .reveal { animation: appear .7s both; }
+    @keyframes appear { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .nav-links { gap: 13px; font-size: 11px; }
+      .hero-grid { gap: 25px; }
+      .hero-art { min-height: 370px; }
+      .products-grid { grid-template-columns: repeat(2,1fr); }
+      .benefit-grid { grid-template-columns: repeat(2,1fr); }
+      .category { height: 240px; }
+    }
+    @media (max-width: 640px) {
+      .nav { min-height: 66px; }
+      .brand { font-size: 24px; }
+      .menu-toggle { display: grid; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 66px;
+        right: 0;
+        left: 0;
+        padding: 18px 5%;
+        background: #141519;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        gap: 12px;
+        font-size: 14px;
+      }
+      .nav-links.active { display: flex; }
+      .nav-actions { gap: 6px; }
+      .icon-btn { width: 36px; height: 36px; }
+      .hero { padding-top: 35px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 12px; }
+      .hero-copy h1 { font-size: 39px; }
+      .hero-copy > p { font-size: 13px; }
+      .hero-art { min-height: 330px; }
+      .hero-image { object-position: center 35%; }
+      .label-one { top: 30px; }
+      .label-two { bottom: 40px; }
+      .section { padding: 52px 0; }
+      .category-grid { grid-template-columns: 1fr; }
+      .category { height: 270px; }
+      .products-grid { gap: 10px; }
+      .product-info { padding: 10px; }
+      .product-info h3 { font-size: 12px; }
+      .price { font-size: 15px; }
+      .promo { padding: 25px 20px; flex-direction: column; align-items: flex-start; }
+      .benefit-grid { gap: 10px; }
+      .benefit { padding: 16px 12px; }
+      .newsletter { flex-direction: column; align-items: stretch; padding: 22px; }
+      .newsletter-form { width: 100%; }
+      .newsletter-form .btn { padding: 10px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 22px; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announcement">رِواق — اكتشف ستايلك الجديد وخلّي إطلالتك تتكلم</div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="رِواق الصفحة الرئيسية">رِواق<span>.</span><small>اختار ستايلك</small></a>
+
+      <nav class="nav-links" id="navLinks" aria-label="القائمة الرئيسية">
+        <a href="#home">الرئيسية</a>
+        <a href="#categories">التصنيفات</a>
+        <a href="#products">اختياراتنا</a>
+        <a href="#offers">العروض</a>
+        <a href="#faq">الأسئلة الشائعة</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="searchBtn" aria-label="البحث">⌕</button>
+        <button class="icon-btn" id="cartBtn" aria-label="قائمة اختياراتك">
+          ♡ <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="icon-btn menu-toggle" id="menuBtn" aria-label="فتح القائمة">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">بساطة تليق بيك · أسلوب مختلف</span>
+          <h1>مش مجرد لبس،<br>دي <span>شخصيتك</span>.</h1>
+          <p>اكتشف اختيارات شبابية تجمع بين الراحة والأناقة. قطع كاجوال تساعدك تبني إطلالتك بطريقتك، كل يوم.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products">اكتشف اختياراتنا ←</a>
+            <a class="btn btn-outline" href="#categories">تصفّح التصنيفات</a>
+          </div>
+          <div class="trust">
+            <span>اختيارات شبابية</span>
+            <span>تفاصيل تفرق</span>
+            <span>ستايل على مزاجك</span>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <img class="hero-image" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1100&q=85" alt="إطلالة شبابية عصرية" fetchpriority="high">
+          <div class="hero-label label-one">
+            <strong>ستايل يومك</strong>
+            <small>اختيارات تناسب إيقاعك</small>
+          </div>
+          <div class="hero-label label-two">
+            <strong>رِواق | RIWAQ</strong>
+            <small>البس اللي يشبهك</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">اختار على مزاجك</span>
+          <h2>أساسيات كل إطلالة</h2>
+          <p>ابدأ من القطعة اللي بتحبها، وكمل ستايلك بطريقتك.</p>
+        </div>
+
+        <div class="category-grid">
+          <a href="#products" class="category">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80" alt="تيشيرتات كاجوال" loading="lazy">
+            <div class="category-info"><h3>تيشيرتات</h3><p>أساسيات بسيطة لكل يوم</p></div>
+          </a>
+          <a href="#products" class="category">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80" alt="إطلالات شبابية" loading="lazy">
+            <div class="category-info"><h3>إطلالات شبابية</h3><p>تفاصيل تصنع الفرق</p></div>
+          </a>
+          <a href="#products" class="category">
+            <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80" alt="بناطيل كاجوال" loading="lazy">
+            <div class="category-info"><h3>بناطيل</h3><p>راحة وحركة طوال اليوم</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">مختارة بعناية</span>
+          <h2>اختيارات رِواق</h2>
+          <p>مجموعة تجريبية لتوضيح شكل المنتجات. الأسعار وروابط الشراء الحقيقية ستُضاف بعد اختيار برنامج العمولة.</p>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <article class="product-card" data-name="تيشيرت أساسي">
+            <div class="product-image-wrap">
+              <img class="product-image" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=650&q=80" alt="تيشيرت أساسي" loading="lazy">
+              <span class="tag">اختيار مميز</span>
+            </div>
+            <div class="product-info">
+              <h3>تيشيرت أساسي</h3>
+              <p class="product-desc">تصميم بسيط لإطلالة يومية</p>
+              <div class="rating">★★★★★ <span class="muted">تقييم تجريبي</span></div>
+              <div class="price-row"><span class="price">السعر يُضاف لاحقًا</span></div>
+              <button class="btn btn-primary affiliate-btn" data-product="تيشيرت أساسي">عرض المنتج</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="إطلالة جينز">
+            <div class="product-image-wrap">
+              <img class="product-image" src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=650&q=80" alt="بنطال جينز" loading="lazy">
+              <span class="tag">كاجوال</span>
+            </div>
+            <div class="product-info">
+              <h3>إطلالة جينز</h3>
+              <p class="product-desc">قطعة أساسية لتنسيقات مختلفة</p>
+              <div class="rating">★★★★★ <span class="muted">تقييم تجريبي</span></div>
+              <div class="price-row"><span class="price">السعر يُضاف لاحقًا</span></div>
+              <button class="btn btn-primary affiliate-btn" data-product="إطلالة جينز">عرض المنتج</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="ستايل يومي">
+            <div class="product-image-wrap">
+              <img class="product-image" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=650&q=80" alt="ستايل شبابي" loading="lazy">
+              <span class="tag">ستايل يومي</span>
+            </div>
+            <div class="product-info">
+              <h3>ستايل يومي</h3>
+              <p class="product-desc">إلهام لإطلالتك القادمة</p>
+              <div class="rating">★★★★★ <span class="muted">تقييم تجريبي</span></div>
+              <div class="price-row"><span class="price">السعر يُضاف لاحقًا</span></div>
+              <button class="btn btn-primary affiliate-btn" data-product="ستايل يومي">عرض المنتج</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="إطلالة عصرية">
+            <div class="product-image-wrap">
+              <img class="product-image" src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=650&q=80" alt="ملابس كاجوال عصرية" loading="lazy">
+              <span class="tag">اختيار رِواق</span>
+            </div>
+            <div class="product-info">
+              <h3>إطلالة عصرية</h3>
+              <p class="product-desc">اختيار يناسب ذوقك الخاص</p>
+              <div class="rating">★★★★★ <span class="muted">تقييم تجريبي</span></div>
+              <div class="price-row"><span class="price">السعر يُضاف لاحقًا</span></div>
+              <button class="btn btn-primary affiliate-btn" data-product="إطلالة عصرية">عرض المنتج</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="offers">
+      <div class="container">
+        <div class="promo">
+          <div>
+            <span class="eyebrow">اختيارات تستاهل تشوفها</span>
+            <h2>ستايل جديد،<br>بداية مختلفة.</h2>
+            <p>تابع المنتجات والعروض المتاحة لدى المتاجر المشاركة من خلال روابط الشراء.</p>
+            <a class="btn btn-primary" href="#products">تصفّح المنتجات</a>
+            <div class="promo-note">العروض والخصومات الفعلية ستظهر بعد ربط المنتجات بمصادرها.</div>
+          </div>
+          <div aria-hidden="true" style="font-size:90px;line-height:1;color:#368fff">✳</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">تجربة واضحة وبسيطة</span>
+          <h2>ليه تتصفّح رِواق؟</h2>
+          <p>هنساعدك تكتشف القطع، وتوصل لمصدر الشراء، وتختار بنفسك.</p>
+        </div>
+        <div class="benefit-grid">
+          <div class="benefit">
+            <div class="benefit-icon">⌕</div>
+            <h3>اختيارات سهلة</h3>
+            <p>تصفّح المنتجات من مكان واحد.</p>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">◇</div>
+            <h3>ستايلات متنوعة</h3>
+            <p>أفكار للكاجوال والإطلالات اليومية.</p>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">↗</div>
+            <h3>رابط إلى البائع</h3>
+            <p>تتم عملية الشراء لدى المتجر الأصلي.</p>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">✓</div>
+            <h3>معلومات واضحة</h3>
+            <p>السعر والشروط من مصدر البيع بعد الربط.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="newsletter">
+      <div class="container">
+        <div class="newsletter">
+          <div>
+            <h2>خليك قريب من رِواق</h2>
+            <p>اشترك لاستقبال أخبار المنتجات والإطلاقات الجديدة.</p>
+          </div>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" id="emailInput" placeholder="بريدك الإلكتروني" aria-label="بريدك الإلكتروني" required>
+            <button class="btn btn-primary" type="submit">اشترك الآن</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">إجابات تهمك</span>
+          <h2>الأسئلة الشائعة</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>إزاي أشتري منتج من رِواق؟</span><span>＋</span></button>
+            <div class="faq-answer">بعد تفعيل روابط المنتجات، اضغط على عرض المنتج للانتقال إلى المتجر البائع، وهناك تقدر تراجع السعر والمقاسات وشروط الشراء.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>هل رِواق هو البائع نفسه؟</span><span>＋</span></button>
+            <div class="faq-answer">رِواق في نسخته دي موقع لاكتشاف المنتجات والتسويق بالعمولة. البيع والدفع والشحن وخدمة ما بعد البيع تكون لدى المتجر الذي يوفّر المنتج.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>هل الأسعار والخصومات المعروضة نهائية؟</span><span>＋</span></button>
+            <div class="faq-answer">الأسعار والخصومات لم تُفعّل بعد في هذه النسخة التجريبية. راجع السعر النهائي والشروط لدى البائع قبل إتمام أي عملية شراء.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>مين المسؤول عن الشحن والاستبدال؟</span><span>＋</span></button>
+            <div class="faq-answer">بعد الانتقال إلى المتجر البائع، راجع سياسة الشحن والاستبدال والاسترجاع الخاصة به؛ فهي التي تنظم طلبك.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#home">رِواق<span>.</span><small>اختار ستايلك</small></a>
+          <p>مساحة لاكتشاف الملابس الرجالي الكاجوال والإطلالات الشبابية. نساعدك توصل للمنتج، والشراء يتم لدى البائع.</p>
+        </div>
+        <div>
+          <h3>تصفّح رِواق</h3>
+          <div class="footer-links">
+            <a href="#categories">التصنيفات</a>
+            <a href="#products">المنتجات</a>
+            <a href="#offers">العروض</a>
+          </div>
+        </div>
+        <div>
+          <h3>معلومات مهمة</h3>
+          <div class="footer-links">
+            <a href="#faq">الأسئلة الشائعة</a>
+            <a href="#newsletter">تابع الجديد</a>
+            <a href="#home">العودة للأعلى ↑</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">© <span id="year"></span> رِواق | RIWAQ — جميع الحقوق محفوظة.</div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function showMessage(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("active");
+    });
+
+    document.querySelectorAll("#navLinks a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+      });
+    });
+
+    document.getElementById("searchBtn").addEventListener("click", () => {
+      const query = prompt("اكتب اسم المنتج الذي تبحث عنه:");
+      if (query === null) return;
+      const cards = [...document.querySelectorAll(".product-card")];
+      const term = query.trim().toLocaleLowerCase("ar");
+      let count = 0;
+
+      cards.forEach(card => {
+        const match = card.textContent.toLocaleLowerCase("ar").includes(term);
+        card.hidden = !match;
+        if (match) count++;
+      });
+
+      document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+      showMessage(count ? `وجدنا ${count} من المنتجات المطابقة.` : "مفيش نتائج مطابقة. جرّب كلمة تانية.");
+    });
+
+    document.getElementById("cartBtn").addEventListener("click", () => {
+      showMessage("دي قائمة اختيارات تجريبية، ولسه روابط المنتجات مش متفعّلة.");
+    });
+
+    document.querySelectorAll(".affiliate-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        showMessage("المنتج تجريبي. هنضيف رابط الشراء بعد تفعيل برنامج العمولة.");
+      });
+    });
+
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        const item = button.closest(".faq-item");
+        const isOpen = item.classList.toggle("open");
+        button.setAttribute("aria-expanded", String(isOpen));
+      });
+    });
+
+    document.getElementById("newsletterForm").addEventListener("submit", event => {
+      event.preventDefault();
+      showMessage("نموذج تجريبي: الاشتراك مش هيتسجل قبل ربط خدمة البريد الإلكتروني.");
+    });
+  </script>
+</body>
+</html>
